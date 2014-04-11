@@ -1,8 +1,7 @@
 (function($) {
     'use strict';
 
-    var loadedUrls = {},
-        cachedScriptPromises = {};
+    var cachedScriptPromises = {};
 
     $.require = function(url, callback, errback) {
         var urls = (url instanceof Array) ? url : [url],
