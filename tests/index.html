@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Not a Test Suite</title>
+    </head>
+    <body>
+        <div id="log">
+            <h1>Log</h1>
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="../jquery.require.js"></script>
+        <script>
+            $(function() {
+                $.require('jquery.log.js', function() {
+                    $('#log').log('&rarr; jquery.log.js was loaded.');
+                });
+                $.require(['jquery.log.js', 'foo.js'], function() {
+                    $('#log').log('&rarr; jquery.log.js and foo.js were loaded.');
+                });
+                $.require('bar.js', false, function() {
+                    $('#log').append('<p>bar.js was not found.</p>');
+                });
+            });
+        </script>
+    </body>
+</html>
