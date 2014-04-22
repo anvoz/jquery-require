@@ -13,14 +13,11 @@
         <script src="../jquery.require.js"></script>
         <script>
             $(function() {
-                $.require('jquery.log.js', function() {
+                $.require('jquery.log.js').done(function() {
                     $('#log').log('&rarr; jquery.log.js was loaded.');
                 });
-                $.require(['jquery.log.js', 'foo.js'], function() {
+                $.require(['jquery.log.js', 'foo.js']).done(function() {
                     $('#log').log('&rarr; jquery.log.js and foo.js were loaded.');
-                });
-                $.require('bar.js', false, function() {
-                    $('#log').append('<p>bar.js was not found.</p>');
                 });
             });
         </script>

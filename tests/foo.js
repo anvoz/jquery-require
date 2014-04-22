@@ -1,1 +1,3 @@
-$('#log').log('<b>From foo.js:</b> Foo!');
+$.require('jquery.log.js').done(function() {
+    $('#log').log('<b>From foo.js:</b> Foo!');
+});

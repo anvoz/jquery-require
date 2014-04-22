@@ -3,22 +3,20 @@
 
     var cachedScriptPromises = {};
 
-    $.require = function(url, callback, errback) {
+    $.require = function(url) {
         var urls = (url instanceof Array) ? url : [url],
             promises = [];
         for (var i = 0; i < urls.length; i++) {
             var url = urls[i];
             if ( ! cachedScriptPromises[url]) {
-                cachedScriptPromises[url] = $.Deferred(function(defer) {
-                    $.ajax({
-                        dataType: 'script',
-                        cache: true,
-                        url: url
-                    }).then(defer.resolve, defer.reject);
-                }).promise();
+                cachedScriptPromises[url] = $.ajax({
+                    dataType: 'script',
+                    cache: true,
+                    url: url
+                });
             }
             promises.push(cachedScriptPromises[url]);
         }
-        $.when.apply($, promises).done(callback).fail(errback);
+        return $.when.apply($, promises);
     };
 })(jQuery);
